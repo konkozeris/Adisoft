@@ -17,18 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('categories')->group(function () {
-
-    Route::get('','App\Http\Controllers\CategoryController@index')->name('category.index');
-    Route::get('list','App\Http\Controllers\CategoryController@list')->name('category.list');
-    Route::get('create', 'App\Http\Controllers\CategoryController@create')->name('category.create');
-    Route::post('store', 'App\Http\Controllers\CategoryController@store')->name('category.store');
-    Route::get('edit/{category}', 'App\Http\Controllers\CategoryController@edit')->name('category.edit');
-    Route::post('update/{category}', 'App\Http\Controllers\CategoryController@update')->name('category.update');
-    Route::post('delete/{category}', 'App\Http\Controllers\CategoryController@destroy' )->name('category.delete');
-    Route::get('show/{category}', 'App\Http\Controllers\CategoryController@show')->name('category.show');
-
-});
 Route::prefix('articles')->group(function () {
 
     Route::get('','App\Http\Controllers\ArticleController@index')->name('article.index');
@@ -44,19 +32,9 @@ Route::prefix('articles')->group(function () {
 
 Route::prefix('comments')->group(function () {
 
-    Route::get('','App\Http\Controllers\CommentController@index')->name('comment.index');
     Route::post('store', 'App\Http\Controllers\CommentController@store')->name('comment.store');
-    Route::get('edit/{comment}', 'App\Http\Controllers\CommentController@edit')->name('comment.edit');
-    Route::post('update/{comment}', 'App\Http\Controllers\CommentController@update')->name('comment.update');
     Route::post('delete/{comment}', 'App\Http\Controllers\CommentController@destroy' )->name('comment.delete');
 
-});
-
-Route::get('/', function () {
-    $categories = \App\Models\Category::all(['id']);
-    $articles = \App\Models\Article::all(['id']);
-
-    $articles->articles()->attach($categories);
 });
 
 Auth::routes();

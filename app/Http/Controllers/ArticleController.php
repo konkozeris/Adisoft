@@ -7,8 +7,6 @@ use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Http\Requests\StoreArticleRequest;
-use App\Http\Requests\UpdateArticleRequest;
 
 class ArticleController extends Controller
 {
